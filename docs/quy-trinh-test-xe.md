@@ -175,7 +175,7 @@ Argus chưa tạo được phiên camera, không phải lỗi tay cầm. Làm đ
 # Trong Jupyter: Kernel > Shut Down Kernel cho moi notebook da dung camera
 sudo systemctl restart nvargus-daemon
 sleep 2
-cd /home/jetson/JetsonRacer
+cd ~/Cheemsity
 python3 tools/check_hardware.py --driver nvidia --camera-seconds 3
 ```
 
