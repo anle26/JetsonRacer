@@ -488,6 +488,7 @@ class ManualDriveCollector(object):
         self._deadman_pressed = False
         self._last_control_time = None
         self._camera_fps = 0.0
+        self._frame_received_at = 0.0
         self._last_session_dir = None
         self._closed = False
         self._actuator_test_running = False
@@ -778,6 +779,7 @@ class ManualDriveCollector(object):
 
             last_frame_id = frame_id
             now_mono = time.monotonic()
+            self._frame_received_at = now_mono
             now_unix = time.time()
             fps_frames += 1
             elapsed = now_mono - fps_t0
