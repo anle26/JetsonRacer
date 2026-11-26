@@ -4,6 +4,7 @@
 import argparse
 from contextlib import ExitStack, contextmanager
 import os
+import platform
 import select
 import signal
 import sys
@@ -11,6 +12,11 @@ import time
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(ROOT, 'src'))
+
+# JetPack 4 NumPy wheels can select an unsupported OpenBLAS kernel on Nano.
+# Set this before camera imports OpenCV and NumPy, as in the BTC notebook.
+if sys.platform == 'linux' and platform.machine() == 'aarch64':
+    os.environ.setdefault('OPENBLAS_CORETYPE', 'ARMV8')
 
 from jetracer_baseline.camera import LatestFrameGrabber, build_source
 from jetracer_baseline.config import load_config
